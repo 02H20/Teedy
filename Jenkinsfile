@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    tools {
+        jdk 'JDK-21'  // 对应 Jenkins 全局工具配置中的名称
+        
+    }
     stages {
         stage('Clean') {
             steps {

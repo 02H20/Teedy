@@ -41,9 +41,9 @@ pipeline {
 		stage('Run containers') {
 			steps {
 				script {
-					sh 'docker stop teedy-container-8081 || true'
-					sh 'docker rm teedy-container-8081 || true'
-					docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").run('--name teedy-container-8081 -d -p 8081:8080')
+					sh 'docker stop teedy-container-8082 || true'
+					sh 'docker rm teedy-container-8082 || true'
+					docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").run('--name teedy-container-8082 -d -p 8082:8080')
 					sh 'docker ps --filter "name=teedy-container"'
 				}
 			}

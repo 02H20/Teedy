@@ -41,9 +41,22 @@ pipeline {
 		stage('Run containers') {
 			steps {
 				script {
+					// 启动 8082 容器
 					sh 'docker stop teedy-container-8082 || true'
 					sh 'docker rm teedy-container-8082 || true'
-					docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").run('--name teedy-container-8082 -d -p 8082:8080')
+					docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").run('--name teedy-container-8082 -p 8082:8080')
+
+					// 启动 8083 容器
+					sh 'docker stop teedy-container-8083 || true'
+					sh 'docker rm teedy-container-8083 || true'
+					docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").run('--name teedy-container-8083 -p 8083:8080')
+
+					// 启动 8084 容器
+					sh 'docker stop teedy-container-8084 || true'
+					sh 'docker rm teedy-container-8084 || true'
+					docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").run('--name teedy-container-8084 -p 8084:8080')
+
+					// 打印出所有正在运行的 teedy 容器
 					sh 'docker ps --filter "name=teedy-container"'
 				}
 			}
